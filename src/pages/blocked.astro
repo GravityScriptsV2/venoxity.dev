@@ -1,6 +1,8 @@
 ---
 import "@fontsource-variable/inter";
 import "../styles/global.css";
+
+const rayId = Astro.request.headers.get("cf-ray") || "Direct/Local";
 ---
 
 <!doctype html>
@@ -14,6 +16,6 @@ import "../styles/global.css";
   <body
     class="min-h-screen flex flex-col justify-between selection:bg-zinc-800 selection:text-white"
   >
-   
+    <span>Ray ID: {rayId}</span>
   </body>
 </html>
