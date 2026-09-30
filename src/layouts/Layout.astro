@@ -1,6 +1,7 @@
 ---
 import "@fontsource-variable/inter";
 import "../styles/global.css";
+import Footer from "../components/Footer.astro";
 ---
 
 <!doctype html>
@@ -72,10 +73,10 @@ import "../styles/global.css";
     </script>
   </head>
   <body
-    class="min-h-screen flex flex-col selection:bg-zinc-800 selection:text-white"
+    class="min-h-screen flex flex-col justify-between selection:bg-zinc-800 selection:text-white"
   >
-    <main class="flex-1">
-      <slot />
-    </main>
+    <header class="w-full"></header>
+    <slot />
+    <Footer />
   </body>
 </html>
