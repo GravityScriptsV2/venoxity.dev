@@ -1,11 +1,14 @@
 ---
+import "@fontsource-variable/inter";
 import "../styles/global.css";
+const year = new Date().getFullYear();
 ---
 
-<html lang="en">
+<!doctype html>
+<html lang="en" class="dark">
   <head>
     <meta charset="utf-8" />
-    <meta name="viewport" content="width=device-width" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>Venoxity Development</title>
     <link rel="icon" type="image/svg+xml" href="/favicon.svg" />
 
@@ -70,14 +73,78 @@ import "../styles/global.css";
     </script>
   </head>
   <body
-    class="min-h-screen bg-zinc-950 text-zinc-300 font-sans flex items-center justify-center px-6"
+    class="min-h-screen flex flex-col justify-between selection:bg-zinc-800 selection:text-white"
   >
-    <main class="text-center max-w-md space-y-5">
-      <h1 class="text-lg font-medium text-zinc-100 uppercase">Provisioning</h1>
-      <p class="text-sm text-zinc-400 leading-relaxed">
-        This subdomain has been automatically provisioned by the Venoxity
-        network. Configuration is pending.
+    <header class="w-full"></header>
+
+    <main
+      class="w-full max-w-xl mx-auto px-6 py-20 flex flex-col items-start text-left animate-fade-in"
+    >
+      <div class="mb-8 flex items-center gap-4">
+        <div class="text-foreground">
+          <svg
+            class="h-9 w-auto"
+            viewBox="15 15 70 70"
+            fill="currentColor"
+            xmlns="http://www.w3.org/2000/svg"
+          >
+            <path d="M 15 15 L 42 85 L 58 85 L 85 15 L 68 15 L 50 62 L 32 15 Z"
+            ></path>
+          </svg>
+        </div>
+        <div>
+          <h1
+            class="text-foreground font-semibold text-sm tracking-[0.25em] uppercase"
+          >
+            Venoxity
+          </h1>
+          <p
+            class="text-muted text-[11px] tracking-[0.25em] uppercase font-medium mt-0.5"
+          >
+            Development
+          </p>
+        </div>
+      </div>
+
+      <p
+        class="text-zinc-200 text-base sm:text-lg leading-relaxed mb-10 font-normal"
+      >
+        We are currently working hard behind the scenes to craft a new
+        generation of immersive experiences and innovative tooling. The new
+        platform will be launching soon.
       </p>
+
+      <nav
+        class="flex flex-wrap items-center gap-x-6 gap-y-2 text-xs font-medium text-muted"
+      >
+        <a
+          href="https://github.com/Venoxity-Development"
+          target="_blank"
+          rel="noopener noreferrer"
+          class="hover:text-foreground transition-colors">GitHub</a
+        >
+        <span class="text-border select-none">/</span>
+        <a
+          href="https://www.lcpdfr.com/profile/531247-venoxity/content/?type=downloads_file"
+          target="_blank"
+          rel="noopener noreferrer"
+          class="hover:text-foreground transition-colors">LSPDFR</a
+        >
+        <span class="text-border select-none">/</span>
+        <a
+          href="https://discord.gg/jCEdAF8AQz"
+          target="_blank"
+          rel="noopener noreferrer"
+          class="hover:text-foreground transition-colors">Discord Server</a
+        >
+      </nav>
     </main>
+
+    <footer
+      class="w-full max-w-xl mx-auto px-6 py-8 text-[11px] text-muted flex justify-between items-center border-t border-[#232733]/60"
+    >
+      <span>&copy; {year} Venoxity Development</span>
+      <span class="text-zinc-600">All rights reserved.</span>
+    </footer>
   </body>
 </html>
