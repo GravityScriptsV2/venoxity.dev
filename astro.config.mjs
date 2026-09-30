@@ -8,6 +8,9 @@ import { defineConfig } from "astro/config";
 export default defineConfig({
   site: "https://venoxity.dev",
   trailingSlash: "never",
+  build: {
+    format: "file",
+  },
   integrations: [mdx({ optimize: true })],
   vite: {
     plugins: [tailwindcss()],
