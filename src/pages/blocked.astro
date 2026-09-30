@@ -3,8 +3,6 @@ export const prerender = false;
 
 import "@fontsource-variable/inter";
 import "../styles/global.css";
-
-const rayId = Astro.request.headers.get("cf-ray") || "Direct/Local";
 ---
 
 <!doctype html>
@@ -18,6 +16,6 @@ const rayId = Astro.request.headers.get("cf-ray") || "Direct/Local";
   <body
     class="min-h-screen flex flex-col justify-between selection:bg-zinc-800 selection:text-white"
   >
-    <span>Ray ID: {rayId}</span>
+    <span>Hello, World!</span>
   </body>
 </html>
