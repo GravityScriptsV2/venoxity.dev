@@ -8,26 +8,28 @@
   --color-border: #232733;
   --color-muted: #8b909f;
   --color-foreground: #ededed;
+}
 
-  --animate-fade-in: fadeIn 0.8s cubic-bezier(0.16, 1, 0.3, 1) forwards;
-
-  @keyframes fadeIn {
-    from {
-      opacity: 0;
-      transform: translateY(6px);
-    }
-
-    to {
-      opacity: 1;
-      transform: translateY(0);
-    }
+@keyframes fadeIn {
+  from {
+    opacity: 0;
+    transform: translateY(6px);
   }
+
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+.animate-fade-in {
+  animation: fadeIn 0.8s cubic-bezier(0.16, 1, 0.3, 1) forwards;
 }
 
 body {
   background-color: #11131a;
   color: #8b909f;
-  font-family: "Inter", sans-serif;
+  font-family: var(--font-sans);
   -webkit-font-smoothing: antialiased;
 
   background-image: radial-gradient(
