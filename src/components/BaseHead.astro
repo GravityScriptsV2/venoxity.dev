@@ -1,0 +1,25 @@
+---
+import smartypants from "smartypants";
+import siteInfo from "../data/site-info";
+import SEO from "./SEO.astro";
+
+export type Props = {
+  title?: string;
+  rawTitle?: string;
+};
+
+const { rawTitle } = Astro.props;
+
+const title =
+  rawTitle ?? [Astro.props.title, siteInfo.name].filter(Boolean).join(" | ");
+---
+
+<!-- High Priority Global Metadata -->
+<meta charset="utf-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1" />
+<title set:html={smartypants(title, 1)} />
+
+<!-- Low Priority Global Metadata -->
+<link rel="icon" type="image/svg+xml" href="/favicon.svg" />
+
+<SEO />
