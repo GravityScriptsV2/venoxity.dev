@@ -1,40 +1,6 @@
 ---
-import Layout from "../layouts/Layout.astro";
-import SocialNav from "./_components/landing-page/SocialNav.astro";
+import MainLayout from "../layouts/MainLayout.astro";
 ---
 
-<Layout>
-  <main
-    class="w-full max-w-xl mx-auto px-6 py-20 flex flex-col items-start text-left animate-fade-in"
-  >
-    <div class="mb-8 flex items-center gap-4">
-      <img
-        src="../assets/Og94apc.webp"
-        alt="Venoxity Logo"
-        class="h-14 w-14 object-contain"
-      />
-      <div>
-        <h1
-          class="text-foreground font-semibold text-sm tracking-[0.25em] uppercase"
-        >
-          Venoxity
-        </h1>
-        <p
-          class="text-muted text-[11px] tracking-[0.25em] uppercase font-medium mt-0.5"
-        >
-          Development
-        </p>
-      </div>
-    </div>
-
-    <p
-      class="text-zinc-200 text-base sm:text-lg leading-relaxed mb-10 font-normal"
-    >
-      We are currently working hard behind the scenes to craft a new generation
-      of immersive experiences and innovative tooling. The new platform will be
-      launching soon.
-    </p>
-
-    <SocialNav />
-  </main>
-</Layout>
+<MainLayout>
+</MainLayout>
