@@ -1,5 +1,7 @@
 ---
 const path = Astro.url.pathname.replace(/\/+$/, "") || "/";
+console.log("ASTRO PATH:", path);
+console.log("ASTRO URL:", Astro.url.href);
 const links = [
   { label: "Home", href: "/" },
   { label: "Nav Link 2", href: "/shop" },
