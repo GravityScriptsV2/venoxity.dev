@@ -1,0 +1,118 @@
+---
+import type { MarkdownHeading } from "astro";
+
+interface Props {
+  headings: MarkdownHeading[];
+}
+
+const items = Astro.props.headings.filter((h) => h.depth === 2);
+
+const linkClass = [
+  "block border-l-2 border-transparent px-3.5 py-2",
+  "text-[13px] leading-snug text-muted transition-colors hover:text-white",
+  "focus-visible:outline focus-visible:outline-2 focus-visible:outline-accent",
+  "data-[active=true]:border-accent data-[active=true]:text-white",
+];
+---
+
+{
+  items.length > 0 && (
+    <aside
+      class="sticky top-[120px] hidden max-h-[calc(100vh-140px)] w-[220px] shrink-0 self-start overflow-y-auto lg:block"
+      aria-label="On this page"
+    >
+      <p class="mb-4 pl-0 text-[11px] font-bold uppercase tracking-[0.12em] text-muted">
+        On this page
+      </p>
+      <nav>
+        <ul>
+          {items.map((h, i) => (
+            <li>
+              <a
+                href={`#${h.slug}`}
+                class:list={linkClass}
+                data-toc
+                data-active={i === 0}
+              >
+                {h.text}
+              </a>
+            </li>
+          ))}
+        </ul>
+      </nav>
+    </aside>
+  )
+}
+
+<script>
+  const OFFSET = 140;
+  const LOCK_MS = 900;
+
+  function initToc() {
+    const links = [
+      ...document.querySelectorAll<HTMLAnchorElement>("[data-toc]"),
+    ];
+    const heads = [...document.querySelectorAll<HTMLElement>("article h2")];
+    if (!links.length || !heads.length) return;
+
+    let locked = false;
+
+    const setActive = (index: number) => {
+      links.forEach((link, i) => {
+        link.dataset.active = String(i === index);
+      });
+    };
+
+    const isAtBottom = () =>
+      window.innerHeight + window.scrollY >=
+      document.documentElement.scrollHeight - 4;
+
+    const update = () => {
+      if (locked) return;
+      const passed = heads.filter(
+        (h) => h.getBoundingClientRect().top <= OFFSET,
+      );
+      setActive(
+        isAtBottom() ? heads.length - 1 : Math.max(passed.length - 1, 0),
+      );
+    };
+
+    let ticking = false;
+    const onScroll = () => {
+      if (ticking) return;
+      ticking = true;
+      requestAnimationFrame(() => {
+        update();
+        ticking = false;
+      });
+    };
+
+    document.addEventListener("scroll", onScroll, {
+      passive: true,
+      capture: true,
+    });
+    window.addEventListener("resize", update);
+
+    links.forEach((link, i) => {
+      link.addEventListener("click", (e) => {
+        const head = heads[i];
+        if (!head) return;
+
+        e.preventDefault();
+        locked = true;
+        setActive(i);
+        head.scrollIntoView({ behavior: "smooth", block: "start" });
+        if (head.id) history.replaceState(null, "", `#${head.id}`);
+
+        setTimeout(() => {
+          locked = false;
+          update();
+        }, LOCK_MS);
+      });
+    });
+
+    update();
+  }
+
+  initToc();
+</script>
