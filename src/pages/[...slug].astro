@@ -17,8 +17,8 @@ const { seo, updated_date } = page.data;
 const { Content, headings } = await render(page);
 
 const formattedDate = new Intl.DateTimeFormat("en-US", {
-  month: "long",
-  year: "numeric",
+  dateStyle: "long",
+  timeZone: "UTC",
 }).format(new Date(updated_date));
 
 const prose = [
@@ -34,26 +34,34 @@ const prose = [
   "[&_li]:relative [&_li]:pl-5",
   "[&_li]:before:absolute [&_li]:before:left-0 [&_li]:before:top-[.7em]",
   "[&_li]:before:size-1.5 [&_li]:before:rotate-45 [&_li]:before:bg-accent",
+
+  "[&_a]:text-accent [&_a]:underline [&_a]:underline-offset-4 [&_a:hover]:text-white",
+
+  "[&_blockquote]:my-6 [&_blockquote]:rounded-r-md [&_blockquote]:border-l-2 [&_blockquote]:border-accent",
+  "[&_blockquote]:bg-white/5 [&_blockquote]:px-5 [&_blockquote]:py-4 [&_blockquote_p]:mb-0",
+
+  "[&_.anchor]:ml-2 [&_.anchor]:no-underline [&_.anchor]:opacity-0 [&_.anchor]:transition-opacity",
+  "[&_:is(h2,h3):hover_.anchor]:opacity-100 [&_.anchor:focus-visible]:opacity-100",
 ];
 ---
 
 <MainLayout>
   <div
-    class="mx-auto flex max-w-[1240px] justify-center gap-12 px-6 py-12 md:px-8"
+    class="mx-auto flex max-w-[1240px] flex-col justify-start gap-12 px-6 py-12 md:px-8 lg:flex-row"
   >
     <Toc headings={headings} />
 
-    <main class="w-full min-w-0 max-w-[870px] text-left leading-7">
+    <main class="w-full min-w-0 max-w-[720px] text-left leading-7">
       <h1
         class="font-display text-4xl font-bold leading-tight text-white md:text-[46px]"
       >
         {seo.title}
       </h1>
-      <p class="mb-10 mt-1 text-[13.5px] text-zinc-500">
+      <p class="mb-10 mt-1 text-[13.5px] text-zinc-400">
         Last updated: {formattedDate}
       </p>
 
-      <article class:list={prose}>
+      <article class:list={[...prose, "text-zinc-300"]}>
         <Content />
       </article>
     </main>
