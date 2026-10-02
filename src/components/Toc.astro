@@ -15,34 +15,60 @@ const linkClass = [
 ];
 ---
 
-{
-  items.length > 0 && (
-    <aside
-      class="sticky top-[120px] hidden max-h-[calc(100vh-140px)] w-[220px] shrink-0 self-start overflow-y-auto lg:block"
-      aria-label="On this page"
-    >
-      <p class="mb-4 pl-0 text-[11px] font-bold uppercase tracking-[0.12em] text-muted">
-        On this page
-      </p>
-      <nav>
-        <ul>
-          {items.map((h, i) => (
+<>
+  {
+    items.length > 0 && (
+      <details class="rounded-md border border-border bg-white/5 lg:hidden">
+        <summary class="cursor-pointer px-4 py-3 text-[11px] font-bold uppercase tracking-[0.12em] text-zinc-300">
+          On this page
+        </summary>
+
+        <ul class="pb-2">
+          {items.map((h) => (
             <li>
               <a
                 href={`#${h.slug}`}
-                class:list={linkClass}
-                data-toc
-                data-active={i === 0}
+                class="block px-4 py-2 text-sm text-zinc-300 hover:text-white"
               >
                 {h.text}
               </a>
             </li>
           ))}
         </ul>
-      </nav>
-    </aside>
-  )
-}
+      </details>
+    )
+  }
+
+  {
+    items.length > 0 && (
+      <aside
+        class="sticky top-[120px] hidden max-h-[calc(100vh-140px)] w-[220px] shrink-0 self-start overflow-y-auto lg:block"
+        aria-label="On this page"
+      >
+        <p class="mb-4 pl-0 text-[11px] font-bold uppercase tracking-[0.12em] text-muted">
+          On this page
+        </p>
+
+        <nav>
+          <ul>
+            {items.map((h, i) => (
+              <li>
+                <a
+                  href={`#${h.slug}`}
+                  class:list={linkClass}
+                  data-toc
+                  data-active={i === 0}
+                >
+                  {h.text}
+                </a>
+              </li>
+            ))}
+          </ul>
+        </nav>
+      </aside>
+    )
+  }
+</>
 
 <script>
   const OFFSET = 140;
