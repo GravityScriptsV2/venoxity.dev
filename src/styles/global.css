@@ -2,28 +2,38 @@
 
 @theme {
   --font-sans: "Inter Variable", ui-sans-serif, system-ui, sans-serif;
+  --font-display: "Quantico", "Chakra Petch", ui-sans-serif, sans-serif;
 
   --color-background: #11131a;
   --color-surface: #181b24;
   --color-border: #232733;
   --color-muted: #8b909f;
   --color-foreground: #ededed;
+  --color-neon: #7ee02a;
+  --color-accent: #8b5cf6;
 }
 
-@keyframes fadeIn {
-  from {
+@layer utilities {
+  .nav-link {
+    position: relative;
+  }
+  .nav-link::after {
+    content: "";
+    position: absolute;
+    left: 0;
+    right: 0;
+    bottom: -8px;
+    height: 2px;
+    background: #8b5cf6;
     opacity: 0;
-    transform: translateY(6px);
+    transition: opacity 0.15s;
   }
-
-  to {
+  .nav-link:hover::after {
+    opacity: 0.5;
+  }
+  .nav-link.active::after {
     opacity: 1;
-    transform: translateY(0);
   }
-}
-
-.animate-fade-in {
-  animation: fadeIn 0.8s cubic-bezier(0.16, 1, 0.3, 1) forwards;
 }
 
 body {
@@ -31,10 +41,38 @@ body {
   color: #8b909f;
   font-family: var(--font-sans);
   -webkit-font-smoothing: antialiased;
-
-  background-image: radial-gradient(
+  /* background-image: radial-gradient(
     rgba(255, 255, 255, 0.025) 1px,
     transparent 1px
   );
-  background-size: 32px 32px;
+  background-size: 32px 32px; */
+}
+
+html {
+  scroll-behavior: smooth;
+  scroll-padding-top: 110px;
+}
+
+@media (prefers-reduced-motion: reduce) {
+  html {
+    scroll-behavior: auto;
+  }
+}
+
+::-webkit-scrollbar {
+  width: 10px;
+}
+
+::-webkit-scrollbar-track {
+  background: #0d0f14;
+}
+
+::-webkit-scrollbar-thumb {
+  background: #252a36;
+  border-radius: 5px;
+  border: 2px solid #0d0f14;
+}
+
+::-webkit-scrollbar-thumb:hover {
+  background: #383e50;
 }
