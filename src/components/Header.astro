@@ -1,14 +1,14 @@
 ---
-const path = Astro.url.pathname;
+const path = Astro.url.pathname.replace(/\/+$/, "") || "/";
 const links = [
-  { label: "Nav Link 1", href: "/" },
+  { label: "Home", href: "/" },
   { label: "Nav Link 2", href: "/shop" },
   { label: "Nav Link 3", href: "/streamers" },
   { label: "Nav Link 4", href: "/careers" },
   { label: "Nav Link 5", href: "/rules" },
 ];
 const isActive = (href: string) =>
-  href === "/" ? path === "/" : path.startsWith(href);
+  href === "/" ? path === "/" : path === href || path.startsWith(`${href}/`);
 ---
 
 <header
@@ -94,4 +94,3 @@ const isActive = (href: string) =>
     </div>
   </div>
 </header>
-
